@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FAQ｜植物基互动H5</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><div class="brand">认知问答 FAQ</div><nav class="nav">
+    <a class="chip" data-page="index.html" href="./index.html">首页</a>
+    <a class="chip" data-page="insight.html" href="./insight.html">趋势洞察</a>
+    <a class="chip" data-page="products.html" href="./products.html">产品档案</a>
+    <a class="chip" data-page="lab.html" href="./lab.html">场景实验室</a>
+    <a class="chip" data-page="faq.html" href="./faq.html">FAQ</a>
+  </nav></div></header>
+  <main class="container">
+    <section class="section reveal">
+      <h1 class="title">植物基常见问题</h1>
+      <p class="desc">覆盖营养、口感、价格与可持续等关键认知问题。</p>
+      <div class="faq" id="faq"></div>
+    </section>
+  </main>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+  <script>
+    H5Common.initCommon();
+    var wrap = H5Common.qs("#faq");
+    H5Data.faq.forEach(function (f) {
+      var item = document.createElement("article");
+      item.className = "faq-item";
+      item.innerHTML = '<button type="button" class="faq-q" aria-expanded="false">' + f.q + '</button><div class="faq-a"><p>' + f.a + "</p></div>";
+      var q = item.querySelector(".faq-q");
+      q.addEventListener("click", function () {
+        var open = item.classList.toggle("open");
+        q.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      wrap.appendChild(item);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>产品档案｜植物基互动H5</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><div class="brand">产品档案</div><nav class="nav">
+    <a class="chip" data-page="index.html" href="./index.html">首页</a>
+    <a class="chip" data-page="insight.html" href="./insight.html">趋势洞察</a>
+    <a class="chip" data-page="products.html" href="./products.html">产品档案</a>
+    <a class="chip" data-page="lab.html" href="./lab.html">场景实验室</a>
+    <a class="chip" data-page="faq.html" href="./faq.html">FAQ</a>
+  </nav></div></header>
+  <main class="container">
+    <section class="section reveal">
+      <h1 class="title">植物基食品的产品海报展示</h1>
+      <div class="list" id="plist"></div>
+    </section>
+  </main>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+  <script>
+    H5Common.initCommon();
+    var list = H5Common.qs("#plist");
+    function render() {
+      list.innerHTML = "";
+      H5Data.productItems.forEach(function (it) {
+        var img = H5Data.images.products[it.img];
+        var el = document.createElement("article");
+        el.className = "item";
+        el.innerHTML = '<div class="media"><img class="thumb" src="' + img + '" loading="lazy" decoding="async" alt=""></div><div><h4>' + it.name + '</h4><p>' + it.desc + '</p><small style="color:var(--accent)">场景：' + it.scene.join(" / ") + "</small></div>";
+        list.appendChild(el);
+      });
+      if (!list.children.length) list.innerHTML = '<div class="panel">暂无内容。</div>';
+    }
+    render();
+  </script>
+</body>
+</html>
